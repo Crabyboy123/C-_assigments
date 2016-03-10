@@ -1,0 +1,5 @@
+C:\Users\Kristian\Documents\GitHub\C-_assigments\PV178-DU-Zadani-1\PV178\PV178.Homeworks.Homework1\bin\Release\PV178.Homeworks.Homework1.exe.config
+C:\Users\Kristian\Documents\GitHub\C-_assigments\PV178-DU-Zadani-1\PV178\PV178.Homeworks.Homework1\bin\Release\PV178.Homeworks.Homework1.exe
+C:\Users\Kristian\Documents\GitHub\C-_assigments\PV178-DU-Zadani-1\PV178\PV178.Homeworks.Homework1\bin\Release\PV178.Homeworks.Homework1.pdb
+C:\Users\Kristian\Documents\GitHub\C-_assigments\PV178-DU-Zadani-1\PV178\PV178.Homeworks.Homework1\obj\Release\PV178.Homeworks.Homework1.exe
+C:\Users\Kristian\Documents\GitHub\C-_assigments\PV178-DU-Zadani-1\PV178\PV178.Homeworks.Homework1\obj\Release\PV178.Homeworks.Homework1.pdb

@@ -13,7 +13,7 @@ namespace PV178.Homeworks.Homework1
         private int freeTiles;
         private Dictionary<ICoordinates, IBuilding> map;
 
-        World(int width, int height)
+        public World(int width, int height)
         {
             if (width <= 0)
                 throw new ArgumentException("Width is invalid");
@@ -23,11 +23,11 @@ namespace PV178.Homeworks.Homework1
             this.width = width;
             this.height = height;
             this.freeTiles = width * height;
-            this.map = new Dictionary<ICoordinates, IBuilding>;
+            this.map = new Dictionary<ICoordinates, IBuilding>();
 
         }
 
-        int Width
+        public int Width
         {
             get
             {
@@ -35,7 +35,7 @@ namespace PV178.Homeworks.Homework1
             }
         }
 
-        int Height
+        public int Height
         {
             get
             {
@@ -43,7 +43,7 @@ namespace PV178.Homeworks.Homework1
             }
         }
 
-        int FreeTiles
+        public int FreeTiles
         {
             get
             {
@@ -51,7 +51,7 @@ namespace PV178.Homeworks.Homework1
             }
         }
 
-        ICoordinates GetBuildingLocation(IBuilding building)
+        public ICoordinates GetBuildingLocation(IBuilding building)
         {
             if (building == null)
                 throw new ArgumentNullException("Building is null");
@@ -64,7 +64,7 @@ namespace PV178.Homeworks.Homework1
             return result;
         }
 
-        IBuilding GetBuildingAt(ICoordinates coordinates)
+        public IBuilding GetBuildingAt(ICoordinates coordinates)
         {
             if (coordinates == null)
                 throw new ArgumentNullException("Coordinates are null");
@@ -82,7 +82,7 @@ namespace PV178.Homeworks.Homework1
             return result;
         }
 
-        void Build(ICoordinates coordinates, IBuilding building)
+        public void Build(ICoordinates coordinates, IBuilding building)
         {
             if (building == null)
                 throw new ArgumentNullException("Building is null");
@@ -96,12 +96,18 @@ namespace PV178.Homeworks.Homework1
                 throw new InvalidOperationException("Coordinates are used");
 
             map.Add(coordinates, building);
+            building.World = this;
             freeTiles--;
         }
 
-        decimal CalculateLandTax()
+       public decimal CalculateLandTax()
         {
-
+            decimal res_tax = 0;
+            foreach(var pair in map)
+            {
+                res_tax += pair.Value.CalculateLandTax(); 
+            }
+            return res_tax;
         }
 
     }

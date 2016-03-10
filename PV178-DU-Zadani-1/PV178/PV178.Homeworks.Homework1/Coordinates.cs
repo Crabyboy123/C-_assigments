@@ -9,13 +9,13 @@ namespace PV178.Homeworks.Homework1
     struct Coordinates : ICoordinates
     {
         public int left, top;
-        Coordinates(int left, int top)
+        public Coordinates(int left, int top)
         {
             this.left = left;
             this.top = top;
         }
         
-        int Left
+        public int Left
         {
             get
             {
@@ -27,7 +27,7 @@ namespace PV178.Homeworks.Homework1
             }
         }
 
-        int Top
+        public int Top
         {
             get
             {
@@ -39,22 +39,19 @@ namespace PV178.Homeworks.Homework1
             }
         }
 
-        public bool IsInRectangle(int top, int left, int width, int height)
+        public bool IsInRectangle(int left, int top, int width, int height)
         {
             if (width <= 0)
                 throw new ArgumentOutOfRangeException("Width is in wrong range");
 
             if (height <= 0) 
                 throw new ArgumentOutOfRangeException("Height is in wrong range");
-
-            if ((top + height >= this.top) && (left + width >= this.left))
-                return true;
-            return false;
+            return (((Left <= left + width) && (Left >= left)) && ((Top <= top + height) && (Top >= top)));
         }
 
-        public String toString()
+        public override String ToString()
         {
-            return String.Format("[{0};{1}]", left, top);
+            return String.Format("[{0};{1}]", Left, Top);
         }
     }
 
