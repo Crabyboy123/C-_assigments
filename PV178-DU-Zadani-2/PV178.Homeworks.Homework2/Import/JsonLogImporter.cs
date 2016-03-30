@@ -16,11 +16,11 @@ namespace PV178.Homeworks.Homework2.Import
         {
             if (logStorage == null)
                 throw new ArgumentNullException("LogStorage is null");
+            logStorage_ = logStorage;
         }
         public List<T> Import()
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            T obj = (T)serializer.ReadObject(logStorage_.Load());
+            List<T> list = JsonConverter.
 
         }
     }
