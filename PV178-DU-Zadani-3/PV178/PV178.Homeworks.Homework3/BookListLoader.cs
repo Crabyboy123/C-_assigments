@@ -25,7 +25,13 @@ namespace PV178.Homeworks.Homework3
             {
                 using (GZipStream gz = new GZipStream(fs, CompressionMode.Decompress))
                 {
-                        gz.Read();
+                    string line;
+                    using (StreamReader sr = new StreamReader(gz))
+                        while((line = sr.ReadLine()) != null)
+                        {
+                            string[] values = line.Split(';');
+                            
+                        }
                 }
             }
         }

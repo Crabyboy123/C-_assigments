@@ -18,72 +18,107 @@ namespace PV178.Homeworks.Homework3
 
         public IList<string> ListCoursesByFirstLetterOfCode(string startsWith)
         {
-            return bookListLoader_.LoadList().;
+            if (startsWith == null)
+                throw new ArgumentNullException("StartsWith is null");
+
+            return bookListLoader_.LoadList()
+                    .Where( x => x.CourseCode.ToLower().StartsWith(startsWith.ToLower()))
+                    .Select(x => x.CourseCode + x.Course).ToList();
         }
 
         public IEnumerable<string> ListAreas()
         {
-            
+            return bookListLoader_.LoadList().Select(x => x.Area)
+                   .Distinct(StringComparer.CurrentCultureIgnoreCase);    
         }
 
         public IEnumerable<Tuple<string, int>> ListTeachers()
         {
-            throw new NotImplementedException();
+            return bookListLoader_.LoadList()
+                   .Select(x => x.Teacher)
+                   .Count()
+                   .GroupBy();
         }
 
         public string[] CoursesWithoutBook()
         {
-            throw new NotImplementedException();
+            return bookListLoader_.LoadList()
+                .Where(x => x.Book == null)
+                .Select(x => x.Course)
+                //.GroupBy(x => x)
+                .ToArray();
         }
 
         public bool AreAllBooksBuyable(string area)
         {
-            throw new NotImplementedException();
+            if (area == null)
+                throw new ArgumentNullException("Area is null");
+            return bookListLoader_.LoadList()
+                .Where(x => x.Area.ToLower().Equals(area.ToLower()))
+                .All(x => x.New != null);
         }
 
         public bool IsAnyBookOfBookRentable(string area)
         {
-            throw new NotImplementedException();
+            if (area == null)
+                throw new ArgumentNullException("Area is null");
+            return bookListLoader_.LoadList()
+                .Where(x => x.Area.ToLower().Equals(area.ToLower()))
+                .Any(x => x.Rent != null);
         }
+
 
         public int CountRentableBooks()
         {
-            throw new NotImplementedException();
+            return bookListLoader_.LoadList()
+                .Count(x => x.Rent != null);
         }
 
         public int GetRoundedAveragePriceOfNewBook()
         {
-            throw new NotImplementedException();
+            return (int)Math.Round((double)(bookListLoader_.LoadList()
+                .Where(x => x.New != null)
+                .Select(x => x.New)
+                .Average()));
         }
 
         public string GetFirstBookForCourse(string courseCode)
         {
-            throw new NotImplementedException();
+            if (courseCode == null)
+                throw new ArgumentNullException("CourseCose is null");
+            if (String.IsNullOrWhiteSpace(courseCode))
+                throw new ArgumentException("CourseCode is empty or whitespace");
+            return bookListLoader_.LoadList()
+                .Where(x => x.CourseCode.ToLower().Equals(courseCode.ToLower()))
+                .Select(x => x.Book)
+                .FirstOrDefault();
         }
 
         public IEnumerable<Tuple<string, string>> ListAllCoursesWithArea()
         {
-            throw new NotImplementedException();
+            
         }
 
         public IDictionary<string, string> ListAllCoursesWithAreaAsDictionary()
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<Tuple<string, IEnumerable<string>>> ListTeachersAndCoursesWithoutBook()
         {
-            throw new NotImplementedException();
+            return bookListLoader_.LoadList()
+                                   .Where(x => x.Book == null)
+                                   .Select(x => Tuple.Create(x.Teacher, bookListLoader_.LoadList().Where(y => y.Teacher.Equals(x.Teacher)).Select(y => y.Course));
         }
 
         public IEnumerable<Tuple<string, int>> ListBookCountPerCourseUsingJoin(params string[] codes)
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<string> ListCoursesWithMostExpensiveBook()
         {
-            throw new NotImplementedException();
+
         }
 
         public IEnumerable<string> ListThreeMostExpensiveBooks(IEnumerable<string> areas)
